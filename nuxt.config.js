@@ -13,19 +13,20 @@ export default {
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
       { name: 'author', content: 'gmyankee' },
       { name: 'keywords', content: '글자수, 워드, 카운트, gmyankee, overmap, 오버맵, history, 기록'},
-      { hid: 'description', name: 'description', content: '글자수 세기, 스티커 노트, 스티키 메모, 스티키 노트, 글자수도 세고 저장도 가능합니다. 글자 수 세고 기록해보실? 사x인, 인크*트 보다 좋은 기능! 맞춤법은 저작권때문에 안됨!' },
+      { hid: 'description', name: 'description', content: '글자수 세기, 스티커 노트,  스티키 노트, 글자 수 세고 기록해보실? 저장도 가능합니다. 사x인, 인크*트 보다 좋음! 맞춤법은 저작권 위반!' },
       // Open Graph
       { name: 'og:title', content: '워드 카운트'},
-      { name: 'og:description', content: '글자수 세기, 스티커 노트, 스티키 메모, 스티키 노트, 글자수도 세고 저장도 가능합니다. 글자 수 세고 기록해보실? 사x인, 인크*트 보다 좋은 기능! 맞춤법은 저작권때문에 안됨!'},
+      { name: 'og:description', content: '글자수 세기, 스티커 노트,  스티키 노트, 글자 수 세고 기록해보실? 저장도 가능합니다. 사x인, 인크*트 보다 좋음! 맞춤법은 저작권 위반!'},
       { name: 'og:type', content: 'website' },
       { name: 'og:url', content: 'https://wordcount.xyz' },
       { name: 'og:image', content: 'https://wordcount.xyz/favicon.ico' },
       // Twitter Card
       { name: 'twitter:card', content: 'summary' },
       { name: 'twitter:title', content: '워드 카운트' },
-      { name: 'twitter:description', content: '글자수 세기, 스티커 노트, 스티키 메모, 스티키 노트, 글자수도 세고 저장도 가능합니다. 글자 수 세고 기록해보실? 사x인, 인크*트 보다 좋은 기능! 맞춤법은 저작권때문에 안됨!' },
+      { name: 'twitter:description', content: '글자수 세기, 스티커 노트,  스티키 노트, 글자 수 세고 기록해보실? 저장도 가능합니다. 사x인, 인크*트 보다 좋음! 맞춤법은 저작권 위반!' },
       { name: 'twitter:image', content: 'https://wordcount.xyz/favicon.ico' },
       { name: 'twitter:image:alt', content: 'Logo' },
+      
       // Google Search Console
       { hid: 'google-site-verification',  name: 'google-site-verification', content: 'BCHdmMc31-gLwNWdk2Vh9k2a2t1lkYW6WqTUoB6_8So'},
       // Naver Web Master
@@ -62,6 +63,9 @@ export default {
   */
   modules: [
     '@nuxtjs/sitemap',
+    ['@nuxtjs/google-adsense', {
+      id: 'ca-pub-9888197614457245'
+    }]
   ],
   /*
   ** vuetify module configuration
