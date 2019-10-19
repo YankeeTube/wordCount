@@ -12,7 +12,7 @@ export default {
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
       { name: 'author', content: 'gmyankee' },
-      { name: 'keywords', content: '글자수, 워드, 카운트, gmyankee, overmap, 오버맵, history, 기록'}
+      { name: 'keywords', content: '글자수, 워드, 카운트, gmyankee, overmap, 오버맵, history, 기록'},
       { hid: 'description', name: 'description', content: '글자수 세기, 스티커 노트, 스티키 메모, 스티키 노트, 글자수도 세고 저장도 가능합니다. 글자 수 세고 기록해보실? 사x인, 인크*트 보다 좋은 기능! 맞춤법은 저작권때문에 안됨!' },
       // Open Graph
       { name: 'og:title', content: '워드 카운트'},
