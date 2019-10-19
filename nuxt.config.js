@@ -61,6 +61,7 @@ export default {
   ** Nuxt.js modules
   */
   modules: [
+    '@nuxtjs/sitemap',
   ],
   /*
   ** vuetify module configuration
@@ -92,5 +93,20 @@ export default {
     */
     extend (config, ctx) {
     }
+  },
+  sitemap: {
+    hostname: 'https://wordcount.xyz',
+    path: '/sitemap.xml',
+    gzip: true,
+    generate: false,
+    cacheTime: 1000 * 60 * 15,  // 15m
+    routes: [
+      {
+        url: '/',
+        changefreq: 'daily',
+        priority: 1,
+        lastmod: new Date(),
+      }
+    ]
   }
 }

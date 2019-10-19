@@ -12,6 +12,7 @@
   },
   "dependencies": {
     "@fortawesome/fontawesome-free": "^5.11.2",
+    "@nuxtjs/sitemap": "^2.0.0",
     "nuxt": "^2.0.0"
   },
   "devDependencies": {
