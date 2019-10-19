@@ -16,8 +16,9 @@
         v-for="(item, i) in items"
         :key="i"
         @click="linkOpen(item.link)"
+        class="justify-center"
         >
-        <v-icon>{{ item.icon }}</v-icon>
+        <v-icon class="justify-center">{{ item.icon }}</v-icon>
         </v-list-item>
     </v-list>
     </v-menu>
