@@ -7,15 +7,29 @@ export default {
   */
   head: {
     titleTemplate: '%s',
-    title: 'wordCount' || '',
+    title: '워드 카운트' || '',
     meta: [
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
-      { hid: 'description', name: 'description', content: process.env.npm_package_description || '' }
+      { hid: 'description', name: 'description', content: '글자수 세기, 스티커 노트, 스티키 메모, 스티키 노트, 글자수도 세고 저장도 가능합니다. 글자 수 세고 기록해보실? 사x인, 인크*트 보다 좋은 기능! 맞춤법은 저작권때문에 안됨!' },
+      // Open Graph
+      { name: 'og:title', content: '워드 카운트'},
+      { name: 'og:description', content: '글자수 세기, 스티커 노트, 스티키 메모, 스티키 노트, 글자수도 세고 저장도 가능합니다. 글자 수 세고 기록해보실? 사x인, 인크*트 보다 좋은 기능! 맞춤법은 저작권때문에 안됨!'},
+      { name: 'og:type', content: 'website' },
+      { name: 'og:url', content: 'https://wordcount.xyz' },
+      { name: 'og:image', content: 'https://wordcount.xyz/favicon.ico' },
+      // Twitter Card
+      { name: 'twitter:card', content: 'summary' },
+      { name: 'twitter:title', content: '워드 카운트' },
+      { name: 'twitter:description', content: '글자수 세기, 스티커 노트, 스티키 메모, 스티키 노트, 글자수도 세고 저장도 가능합니다. 글자 수 세고 기록해보실? 사x인, 인크*트 보다 좋은 기능! 맞춤법은 저작권때문에 안됨!' },
+      { name: 'twitter:image', content: 'https://wordcount.xyz/favicon.ico' },
+      { name: 'twitter:image:alt', content: 'Logo' },
+      // Naver Web Master
+      { name: 'naver-site-verification', content: 'c8b124dfb941c3bfb9c1c2124aefa7f50749f2c5'},
     ],
     link: [
       { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }
-    ]
+    ],
   },
   /*
   ** Customize the progress-bar color
@@ -31,6 +45,7 @@ export default {
   */
   plugins: [
     "@/plugins/fontawesome.js",
+    { src: '~plugins/ga.js', ssr: false }
   ],
   /*
   ** Nuxt.js dev-modules
