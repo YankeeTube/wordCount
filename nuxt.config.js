@@ -26,6 +26,8 @@ export default {
       { name: 'twitter:description', content: '글자수 세기, 스티커 노트, 스티키 메모, 스티키 노트, 글자수도 세고 저장도 가능합니다. 글자 수 세고 기록해보실? 사x인, 인크*트 보다 좋은 기능! 맞춤법은 저작권때문에 안됨!' },
       { name: 'twitter:image', content: 'https://wordcount.xyz/favicon.ico' },
       { name: 'twitter:image:alt', content: 'Logo' },
+      // Google Search Console
+      { hid: 'google-site-verification',  name: 'google-site-verification', content: 'BCHdmMc31-gLwNWdk2Vh9k2a2t1lkYW6WqTUoB6_8So'},
       // Naver Web Master
       { hid: 'naver-site-verification',  name: 'naver-site-verification', content: 'c8b124dfb941c3bfb9c1c2124aefa7f50749f2c5'},
     ],

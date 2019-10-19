@@ -1,6 +1,8 @@
-# src
+# wordCount
 
-> My posh Nuxt.js project
+> made by GM yankee / use vue + vuetify  
+> demo : (워드 카운트)[https://wordcount.xyz]  
+> other sites: (오버맵)[https://overmap.me]  
 
 ## Build Setup
 
