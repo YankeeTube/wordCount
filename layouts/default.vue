@@ -14,13 +14,16 @@
       <v-spacer v-for="n in 6" v-bind:key="n" />
       <template v-if="!isMobile">
         <div class="rt-btn">
-          <v-btn icon @click="popBlog">
+          <v-btn icon @click="popSites('https://gmyankee.tistory.com')">
             <v-icon>fas fa-blog</v-icon>
           </v-btn>
-          <v-btn icon @click="popKofi">
+          <v-btn icon @click="popSites('https://overmap.me')">
+            <v-icon>fas fa-cube</v-icon>
+          </v-btn>
+          <v-btn icon @click="popSites('https://ko-fi.com/gmyankee')">
             <v-icon>fas fa-coffee</v-icon>
           </v-btn>
-          <v-btn icon @click="popEth">
+          <v-btn icon @click="popSites('https://etherdonation.com/d?to=0x219E9F7Eb26f57eC130182d9bFFEc7778FD5545B')">
             <v-icon>fab fa-ethereum</v-icon>
           </v-btn>
           <v-btn icon @click="popFb">
@@ -77,30 +80,18 @@ export default {
     window.addEventListener('resize', this.onResize, { passive: true })
   },
   methods: {
+    popSites(link){
+      window.open(
+        link,
+        "_blank",
+      )
+    },
     popFb(){
       window.open(
         `http://www.facebook.com/sharer/sharer.php?u=
       ${encodeURIComponent(window.location.hostname)}`,
       "_blank",
       'width=500,height=600,resizable=yes,scrollbars=yes'
-      )
-    },
-    popEth(){
-      window.open(
-        `https://etherdonation.com/d?to=0x219E9F7Eb26f57eC130182d9bFFEc7778FD5545B`,
-        "_blank",
-      )
-    },
-    popKofi(){
-      window.open(
-        `https://ko-fi.com/gmyankee`,
-        "_blank",
-      )
-    },
-    popBlog(){
-      window.open(
-        `https://gmyankee.tistory.com`,
-        "_blank",
       )
     },
     onResize () {
