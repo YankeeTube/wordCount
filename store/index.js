@@ -7,6 +7,7 @@ const store = () => new Vuex.Store({
         _timeline: [],
         _loadData: '',
         nonce: 0,
+        switching: false,
     },
     mutations: {
         setTimeLine(state, timeline){
@@ -37,6 +38,9 @@ const store = () => new Vuex.Store({
             }else {
                 state.nonce++
             }
+        },
+        setSwitch(state, data){
+            state.switching = data
         }
     },
     getters: {
@@ -48,11 +52,13 @@ const store = () => new Vuex.Store({
         },
         getLoadData: function(state){
             return state._loadData
+        },
+        getSwitch: function(state){
+            return state.switching
         }
     },
     actions: {
         setTimeLine({commit}, payload){
-            // console.log(this);
             commit('setTimeLine', payload)
         },
         setNonce({commit}, payload){
@@ -73,6 +79,9 @@ const store = () => new Vuex.Store({
         },
         clearTimeLine({commit}){
             commit('clearTimeLine')
+        },
+        setSwitch({commit}, payload){
+            commit('setSwitch', payload)
         }
     }
 })

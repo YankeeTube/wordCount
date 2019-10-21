@@ -1,7 +1,8 @@
 <template>
-  <v-container class="history timeline-container" :class="{'px-6': !$vuetify.breakpoint.smAndDown}">
+  <v-container class="history timeline-container" :class="{'px-6': !$vuetify.breakpoint.smAndDown}" v-if="this.$store.getters.getSwitch == false">
     <p class="history--title"><v-icon>fas fa-history</v-icon> 히스토리</p>
     <p class="warn">* 브라우저 캐시를 삭제(제거)할 경우 히스토리가 초기화 될 수 있으니, 주의 해 주세요!</p>
+    <p class="warn">* 시크릿 모드 또는 Tor 브라우저를 사용하여 추적방지 기능을 사용하여도 초기화 됩니다!</p>
     <v-list three-line class="history-box" v-if="timeline.length > 0" color="#fafafa">
       <template v-for="(item, index) in timeline">
         <v-subheader
@@ -15,7 +16,8 @@
 
           <v-list-item-content>
             <p>공백 포함 : {{ item.fullCount }} 자 / {{ item.fullByteCount || 0 }} BYTE</p>
-            <p class="my-2">공백 제외 : {{ item.emptyCount }} 자 / {{ item.emptyByteCount || 0 }} BYTE</p>
+            <p class="my-1">공백 제외 : {{ item.emptyCount }} 자 / {{ item.emptyByteCount || 0 }} BYTE</p>
+            <p class="my-1">단어 수 : {{ item.voca || 0 }} 자</p>
             <v-list-item-subtitle v-html="item.text">
             </v-list-item-subtitle>
           </v-list-item-content>

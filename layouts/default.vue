@@ -13,25 +13,23 @@
       <nuxt-link to="/"><WordLogo /></nuxt-link>
       <v-spacer v-for="n in 6" v-bind:key="n" />
       <template v-if="!isMobile">
-        <div class="rt-btn">
-          <v-btn icon @click="popSites('https://gmyankee.tistory.com')">
-            <v-icon>fas fa-blog</v-icon>
-          </v-btn>
-          <v-btn icon @click="popSites('https://overmap.me')">
-            <v-icon>fas fa-cube</v-icon>
-          </v-btn>
-          <v-btn icon @click="popSites('https://ko-fi.com/gmyankee')">
-            <v-icon>fas fa-coffee</v-icon>
-          </v-btn>
-          <v-btn icon @click="popSites('https://etherdonation.com/d?to=0x219E9F7Eb26f57eC130182d9bFFEc7778FD5545B')">
-            <v-icon>fab fa-ethereum</v-icon>
-          </v-btn>
-          <v-btn icon @click="popFb">
-              <v-icon>fab fa-facebook</v-icon>
-          </v-btn>
+        <div
+          v-for="item in items"
+          :key="item.icon"
+          >
+          <UpdateLog v-if="item.dialog === true" />
+          <v-tooltip bottom v-else>
+            <template v-slot:activator="{ on }">
+              <v-btn icon @click="linkOpen(item.link)" v-on="on">
+                <v-icon>{{ item.icon }}</v-icon>
+              </v-btn>
+            </template>
+            <span>{{ item.text }}</span>
+          </v-tooltip>
         </div>
       </template>
-      <Rbtn v-else />
+      <UpdateLog v-if="isMobile" />
+      <Rbtn v-if="isMobile" />
       <v-spacer />
     </v-app-bar>
     <v-content>
@@ -52,10 +50,12 @@
 <script>
 import WordLogo from '~/components/WordLogo.vue'
 import Rbtn from '~/components/RightBtn.vue'
+import UpdateLog from '~/components/UpdateLog.vue'
 export default {
   components: {
     WordLogo,
-    Rbtn
+    Rbtn,
+    UpdateLog
   },
   data () {
     return {
@@ -68,6 +68,38 @@ export default {
       title: '워드 카운트',
       currentYear: new Date().getFullYear(),
       isMobile: false,
+      items: [
+        {
+            icon: 'mdi-update',
+            text: '업데이트 로그',
+            dialog: true,
+        },
+        { 
+            icon: 'fas fa-blog',
+            text: '블로그',
+            link: `https://gmyankee.tistory.com`,
+        },
+        { 
+            icon: 'fas fa-cube',
+            text: '오버맵',
+            link: `https://overmap.me`,
+        },
+        { 
+            icon: 'fas fa-coffee',
+            text: '커피 기부',
+            link: `https://ko-fi.com/gmyankee`,
+        },
+        { 
+            icon: 'fab fa-ethereum',
+            text: '이더리움 기부',
+            link: `https://etherdonation.com/d?to=0x219E9F7Eb26f57eC130182d9bFFEc7778FD5545B`,
+        },
+        { 
+            icon: 'fab fa-facebook',
+            text: '페이스북 공유',
+            link: `http://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(window.location.hostname)}`
+        },
+      ],
     }
   },
   beforeDestroy () {
@@ -80,19 +112,8 @@ export default {
     window.addEventListener('resize', this.onResize, { passive: true })
   },
   methods: {
-    popSites(link){
-      window.open(
-        link,
-        "_blank",
-      )
-    },
-    popFb(){
-      window.open(
-        `http://www.facebook.com/sharer/sharer.php?u=
-      ${encodeURIComponent(window.location.hostname)}`,
-      "_blank",
-      'width=500,height=600,resizable=yes,scrollbars=yes'
-      )
+    linkOpen(link){
+      window.open(link, "_blank")
     },
     onResize () {
       this.isMobile = window.innerWidth < 600
