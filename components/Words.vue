@@ -25,7 +25,7 @@
                     </v-row>
                     <v-row class="mx-2" align="center">
                         <div class="ma-4 subtitle-1">
-                            <v-icon color="#b0d7f2" class="ml-1 mr-2">far fa-file-word</v-icon>단어수
+                            <v-icon color="#b0d7f2" class="ml-1 mr-2">far fa-file-word</v-icon>단어 수
                         </div>
                         <div class="d-flex align-center">
                             <span class="highlightText">{{ voca }}</span>&nbsp;자
@@ -36,18 +36,15 @@
         </v-container>
         <v-container fluid>
             <v-textarea
-            counter
             background-color="#ffffff"
             color="cyan"
             label="입력하세요!"
             class="userInput"
-            autofocus
-            auto-grow
             @keyup="wordCounting"
-            hide-details
-            outlined
-            row-height="50"
             v-model="words"
+            solo
+            rows="15"
+            no-resize
             ></v-textarea>
             <v-row class="description mx-1" justify="space-between">
                 <div class="align-center">
@@ -110,6 +107,20 @@
         font-size: 1.25rem;
         color: #5e849e;
     }
+    .scrollbar{
+        overflow-y: scroll;
+    }
+    ::-webkit-scrollbar {
+        width: 14px;
+    }
+    ::-webkit-scrollbar-track {
+        background-color: #b46868;
+        border-radius: 9px;
+    }
+    ::-webkit-scrollbar-thumb {
+        background-color: #6c8927;
+        border-radius: 9px;
+    }
     @media (max-width: 768px){
         .description{
             flex-direction: column !important;
@@ -130,6 +141,7 @@ export default {
           fullByteCount: 0,
           snackbar: false,
           warnsnack: false,
+          growControl: false,
           text: "복사되었습니다. 'Ctrl + v'를 입력하여 붙여넣어 보세요!",
           warn: "1글자 이상 입력하세요!",
           buttons: [
@@ -175,8 +187,10 @@ export default {
         })
     },
     WordCount(str) {
-        if (str){
+        if (str && str.match(/\S+/g)){
             this.voca = str.match(/\S+/g).length || [].length
+        }else {
+            this.voca = 0;
         }
         
     },
@@ -246,6 +260,10 @@ export default {
     timeLineReset(){
         localStorage.clear();
         this.$store.dispatch('clearTimeLine');
+    },
+    forceReRender() {
+        console.log(this.growControl);
+        this.growControl = !this.growControl;
     }
   },
   watch: {

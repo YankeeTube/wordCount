@@ -72,7 +72,7 @@
         </v-list-item>
         <v-divider
             v-if="index + 1 < timeline.length"
-            :key="index"
+            :key="index + 1"
           ></v-divider>
       </template>
     </v-list>

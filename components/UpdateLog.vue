@@ -34,10 +34,10 @@
         <v-divider></v-divider>
         <v-list three-line subheader>
           <v-subheader>Update History</v-subheader>
-          <v-list-item v-for="item in items" :key="item">
+          <v-list-item v-for="(item, index) in items" :key="index">
               <v-list-item-content>
                 <v-list-item-title class="my-2">{{ item.date }}</v-list-item-title>
-                <v-list-item-subtitle class="my-1" v-for="text in item.text" :key="text">{{ text }}</v-list-item-subtitle>
+                <v-list-item-subtitle class="my-1" v-for="(text, idx) in item.text" :key="idx">{{ text }}</v-list-item-subtitle>
               </v-list-item-content>
           </v-list-item>
         </v-list>
@@ -72,8 +72,18 @@
             {
                 date: '2019-10-22',
                 text: [
-                    '- [기능 변경] : 사이트 제목(워드 카운트)에 맞게 글자 수를 체크하는 대상의 공백/개행을 기준으로 모든 단어 수를 체크하는 기능이 추가됩니다.'
+                    '- [기능 변경] : 글자 수를 체크하는 대상의 공백/개행을 기준으로 모든 단어 수를 체크하는 기능이 추가됩니다.'
                 ]
+            },
+            {
+              date: '2019-10-25',
+              text: [
+                  '- [버그 수정] : 지우기 버튼이 아닌 수동으로 글자 제거시 단어 수가 사라지지 않는 현상 수정',
+                  '- [문구 수정] : 단어수 => 단어 수',
+                  '- [기능 개선] : 개행(줄바꿈)이 길어질 수록 칸이 자동으로 늘어나지만 최대 높이를 초과할 경우 입력 글자가 안보이는 현상',
+                  '╚============ 고정된 사이즈로 변경되며, 스크롤이 추가됩니다.',
+                  '- [자본 주의] : SPA의 단점으로 애드센스가 안 붙으니 일단 클릭몬 광고가 대체됩니다.',
+              ]
             }
         ]
       }

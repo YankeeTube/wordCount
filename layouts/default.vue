@@ -11,7 +11,7 @@
       <!-- <v-app-bar-nav-icon @click.stop="drawer = !drawer" /> -->
       <v-spacer />
       <nuxt-link to="/"><WordLogo /></nuxt-link>
-      <v-spacer v-for="n in 6" v-bind:key="n" />
+      <v-spacer v-for="(n, idx) in 6" :key="idx" />
       <template v-if="!isMobile">
         <div
           v-for="item in items"
