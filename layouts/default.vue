@@ -77,7 +77,7 @@ export default {
         { 
             icon: 'fas fa-blog',
             text: '블로그',
-            link: `https://gmyankee.tistory.com`,
+            link: `https://gmyankee.tistory.com/category/공지사항/wordcount`,
         },
         { 
             icon: 'fas fa-cube',
