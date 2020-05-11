@@ -64,6 +64,7 @@ export default {
   */
   modules: [
     '@nuxtjs/sitemap',
+    'nuxt-material-design-icons',
     ['@nuxtjs/google-adsense', {
       id: 'ca-pub-9888197614457245'
     }]
@@ -78,9 +79,9 @@ export default {
       light: true,
       themes: {
         light: {
-          primary: colors.blue.darken2,
+          primary: "#1b3a57",
           accent: colors.grey.darken3,
-          secondary: colors.amber.darken3,
+          secondary: "#476282",
           info: colors.teal.lighten1,
           warning: colors.amber.base,
           error: colors.deepOrange.accent4,

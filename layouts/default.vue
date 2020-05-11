@@ -3,7 +3,6 @@
     <v-navigation-drawer
       dark
       app
-      absolute
       style="background:#11293f"
     >
       <template v-slot:prepend>
@@ -31,20 +30,46 @@
 
       <v-list dense>
         <v-list-item
-          v-for="item in items"
-          :key="item.text"
-          @click="item.link"
+          v-for="menu in menus"
+          :key="menu.name"
+          @click="menu.link"
         >
-          <v-list-item-icon>
-            <v-icon size=20>{{ item.icon }}</v-icon>
+          <v-list-group
+            class="mx-0"
+            :prepend-icon="menu.icon"
+            value="true"
+            v-if="menu.group === true"
+          >
+            <template v-slot:activator>
+              <v-list-item-title v-text="menu.groupName"></v-list-item-title>
+            </template>
+              <v-list-item
+                v-for="subMenu in menu.groups"
+                :key="subMenu.name"
+                @click="subMenu.link"
+              >
+                <v-list-item-icon>
+                  <v-icon>{{ subMenu.icon }}</v-icon>
+                </v-list-item-icon>
+                <v-list-item-content>
+                  <v-list-item-title v-text="subMenu.name"></v-list-item-title>
+                </v-list-item-content>
+              </v-list-item>
+          </v-list-group>
+          <!-- GROUP 이랑 노뎁스 메뉴랑 반복문을 쪼개야할듯 -->
+
+          <v-list-item-icon >
+            <v-icon size=20>{{ menu.icon }}</v-icon>
           </v-list-item-icon>
 
           <v-list-item-content>
-            <v-list-item-title>{{ item.text }}</v-list-item-title>
+            <v-list-item-title>{{ menu.name }}</v-list-item-title>
           </v-list-item-content>
         </v-list-item>
       </v-list>
     </v-navigation-drawer>
+
+    <AppBar />
     
     <v-content>
       <v-container>
@@ -61,21 +86,17 @@
   </v-app>
 </template>
 
-<style scoped>
-  .on-hover{
-    opacity: 0.6;
-  }
-</style>
-
 <script>
 import WordLogo from '~/components/WordLogo.vue'
 import Rbtn from '~/components/RightBtn.vue'
 import UpdateLog from '~/components/UpdateLog.vue'
+import AppBar from '~/components/AppBar.vue'
 export default {
   components: {
     WordLogo,
     Rbtn,
-    UpdateLog
+    UpdateLog,
+    AppBar
   },
   data () {
     return {
@@ -88,6 +109,29 @@ export default {
       title: '워드 카운트',
       currentYear: new Date().getFullYear(),
       isMobile: false,
+      menus: [
+        {
+          icon: 'mdi-numeric-9-box-multiple',
+          name: '글자 수 세기',
+          link: '/wordcount',
+        },
+        {
+          group: true,
+          groupName: 'Encode / Decode',
+          groups: [
+            {
+              icon: 'mdi-format-bold',
+              name: 'Base64',
+              link: '/base64'
+            },
+            {
+              icon: 'mdi-format-bold',
+              name: 'Unicode',
+              link: '/unicode'
+            },
+          ]
+        }
+      ],
       items: [
         {
             icon: 'mdi-update',
