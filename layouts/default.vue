@@ -1,37 +1,51 @@
 <template>
   <v-app style="background: #f7f7f7;">
-    <v-app-bar
-      :clipped-left="clipped"
-      fixed
+    <v-navigation-drawer
+      dark
       app
-      color="#f2f3f4"
-      text-color="#6f7070"
-      elevation="1"
+      absolute
+      style="background:#11293f"
     >
-      <!-- <v-app-bar-nav-icon @click.stop="drawer = !drawer" /> -->
-      <v-spacer />
-      <nuxt-link to="/"><WordLogo /></nuxt-link>
-      <v-spacer v-for="(n, idx) in 6" :key="idx" />
-      <template v-if="!isMobile">
-        <div
-          v-for="item in items"
-          :key="item.icon"
-          >
-          <UpdateLog v-if="item.dialog === true" />
-          <v-tooltip bottom v-else>
-            <template v-slot:activator="{ on }">
-              <v-btn icon @click="linkOpen(item.link)" v-on="on">
-                <v-icon>{{ item.icon }}</v-icon>
-              </v-btn>
-            </template>
-            <span>{{ item.text }}</span>
-          </v-tooltip>
-        </div>
+      <template v-slot:prepend>
+        <v-list-item two-line>
+          <v-list-item-avatar size="40">
+            <img src="~/static/logo.png">
+          </v-list-item-avatar>
+
+          <v-list-item-content>
+            <v-list-item-title class="title">SmarTools</v-list-item-title>
+          </v-list-item-content>
+        </v-list-item>
       </template>
-      <UpdateLog v-if="isMobile" />
-      <Rbtn v-if="isMobile" />
-      <v-spacer />
-    </v-app-bar>
+
+      <v-divider></v-divider>
+
+      <v-list-item @click="() => '/'">
+        <v-list-item-icon>
+          <v-icon size="20">fas fa-home</v-icon>
+        </v-list-item-icon>
+        <v-list-item-content class="subtitle-2">HOME</v-list-item-content>
+      </v-list-item>
+
+      <v-divider></v-divider>
+
+      <v-list dense>
+        <v-list-item
+          v-for="item in items"
+          :key="item.text"
+          @click="item.link"
+        >
+          <v-list-item-icon>
+            <v-icon size=20>{{ item.icon }}</v-icon>
+          </v-list-item-icon>
+
+          <v-list-item-content>
+            <v-list-item-title>{{ item.text }}</v-list-item-title>
+          </v-list-item-content>
+        </v-list-item>
+      </v-list>
+    </v-navigation-drawer>
+    
     <v-content>
       <v-container>
         <nuxt />
@@ -46,6 +60,12 @@
     </v-footer>
   </v-app>
 </template>
+
+<style scoped>
+  .on-hover{
+    opacity: 0.6;
+  }
+</style>
 
 <script>
 import WordLogo from '~/components/WordLogo.vue'
