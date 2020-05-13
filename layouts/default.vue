@@ -55,7 +55,7 @@
           <v-list-item dense
             v-for="subMenu in group.items"
             :key="subMenu.name"
-            @click="subMenu.link"
+            :href="subMenu.link"
           >
             <v-list-item-icon><v-icon>{{ subMenu.icon }}</v-icon></v-list-item-icon>
             <v-list-item-content>
@@ -66,7 +66,10 @@
       </v-list>
     </v-navigation-drawer>
 
-    <AppBar />
+    <AppBar 
+      :breadCrumb="$nuxt.$route.name"
+      :to="$nuxt.$route.path"
+    />
     
     <v-content>
       <v-container>
