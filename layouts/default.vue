@@ -19,7 +19,7 @@
 
       <v-divider></v-divider>
 
-      <v-list-item @click="() => '/'">
+      <v-list-item href="/">
         <v-list-item-icon>
           <v-icon size="20">fas fa-home</v-icon>
         </v-list-item-icon>
@@ -32,7 +32,7 @@
         <v-list-item
           v-for="menu in menus"
           :key="menu.name"
-          @click="menu.link"
+          :href="menu.link"
         >
 
           <v-list-item-icon ><v-icon size=20>{{ menu.icon }}</v-icon></v-list-item-icon>
@@ -63,7 +63,6 @@
             </v-list-item-content>
           </v-list-item>
         </v-list-group>
-          <!-- GROUP 이랑 노뎁스 메뉴랑 반복문을 쪼개야할듯 -->
       </v-list>
     </v-navigation-drawer>
 
