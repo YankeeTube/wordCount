@@ -3,7 +3,7 @@
       dense
       app
       color="#f7f7f7"
-      class="mx-2"
+      class="px-2"
       text-color="secondary"
       elevate-on-scroll
       scroll-threshold
@@ -29,7 +29,7 @@
             <v-list-item
                 v-for="item in apps"
                 :key="item.text"
-                @click="item.link"
+                @click="linkOpen(item.link)"
             >
             <v-list-item-icon>
                 <v-icon size=20 class="mx-auto">{{ item.icon }}</v-icon>
@@ -88,6 +88,11 @@ export default {
                 link: `http://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(window.location.hostname)}`
             },
         ]
-    })
+    }),
+    methods: {
+        linkOpen(link){
+            window.open(link, "_blank")
+        },
+    }
 }
 </script>

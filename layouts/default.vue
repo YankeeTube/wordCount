@@ -34,38 +34,36 @@
           :key="menu.name"
           @click="menu.link"
         >
-          <v-list-group
-            class="mx-0"
-            :prepend-icon="menu.icon"
-            value="true"
-            v-if="menu.group === true"
-          >
-            <template v-slot:activator>
-              <v-list-item-title v-text="menu.groupName"></v-list-item-title>
-            </template>
-              <v-list-item
-                v-for="subMenu in menu.groups"
-                :key="subMenu.name"
-                @click="subMenu.link"
-              >
-                <v-list-item-icon>
-                  <v-icon>{{ subMenu.icon }}</v-icon>
-                </v-list-item-icon>
-                <v-list-item-content>
-                  <v-list-item-title v-text="subMenu.name"></v-list-item-title>
-                </v-list-item-content>
-              </v-list-item>
-          </v-list-group>
-          <!-- GROUP 이랑 노뎁스 메뉴랑 반복문을 쪼개야할듯 -->
 
-          <v-list-item-icon >
-            <v-icon size=20>{{ menu.icon }}</v-icon>
-          </v-list-item-icon>
-
-          <v-list-item-content>
-            <v-list-item-title>{{ menu.name }}</v-list-item-title>
-          </v-list-item-content>
+          <v-list-item-icon ><v-icon size=20>{{ menu.icon }}</v-icon></v-list-item-icon>
+          <v-list-item-title>{{ menu.name }}</v-list-item-title>
         </v-list-item>
+        
+        <v-list-group
+          v-for="group in groups"
+          :key="group.name"
+          prepend-icon="mdi-exit-run"
+          color="white"
+          value="true"
+          no-action
+        >
+          <template v-slot:activator>
+            <v-list-item-content>
+              <v-list-item-title class="white--text">{{ group.name }}</v-list-item-title>
+            </v-list-item-content>
+          </template>
+          <v-list-item dense
+            v-for="subMenu in group.items"
+            :key="subMenu.name"
+            @click="subMenu.link"
+          >
+            <v-list-item-icon><v-icon>{{ subMenu.icon }}</v-icon></v-list-item-icon>
+            <v-list-item-content>
+              <v-list-item-title class="white--text">{{ subMenu.name }}</v-list-item-title>
+            </v-list-item-content>
+          </v-list-item>
+        </v-list-group>
+          <!-- GROUP 이랑 노뎁스 메뉴랑 반복문을 쪼개야할듯 -->
       </v-list>
     </v-navigation-drawer>
 
@@ -115,17 +113,23 @@ export default {
           name: '글자 수 세기',
           link: '/wordcount',
         },
+      ],
+      groups: [
         {
-          group: true,
-          groupName: 'Encode / Decode',
-          groups: [
+          name: 'Encode / Decode',
+          items: [
+            {
+              icon: 'mdi-link-lock',
+              name: 'URL',
+              link: '/escape'
+            },
             {
               icon: 'mdi-format-bold',
               name: 'Base64',
               link: '/base64'
             },
             {
-              icon: 'mdi-format-bold',
+              icon: 'mdi-unicode',
               name: 'Unicode',
               link: '/unicode'
             },
