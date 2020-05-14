@@ -65,6 +65,7 @@ export default {
   modules: [
     '@nuxtjs/sitemap',
     'nuxt-material-design-icons',
+    'nuxt-clipboard2',
     ['@nuxtjs/google-adsense', {
       id: 'ca-pub-9888197614457245'
     }]

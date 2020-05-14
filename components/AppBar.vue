@@ -9,7 +9,7 @@
       scroll-threshold
     >
         <v-toolbar-title class="subtitle-2" color="secondary">
-            <nuxt-link :to="to">{{ breadCrumb }} <v-icon class="mx-1" color="secondary">fas fa-caret-down</v-icon></nuxt-link>
+            Ver 2.0.0 / <nuxt-link :to="to">{{ breadCrumb }}</nuxt-link>
         </v-toolbar-title>
 
       <v-spacer></v-spacer>
