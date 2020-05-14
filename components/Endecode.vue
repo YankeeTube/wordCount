@@ -10,29 +10,11 @@
             no-resize
         ></v-textarea>
 
-        <!-- <v-row class="mb-2" align="center" justify="center" no-gutters>
-            <v-tooltip top>
-                <template v-slot:activator="{ on }">
-                    <v-card outlined tile width="50%" v-on="on">
-                        <v-btn block tile color="indigo" dark @click="$emit('enc')">Encode</v-btn>
-                    </v-card>
-                </template>
-                <span>인코딩</span>
-            </v-tooltip>
-            <v-tooltip top>
-                <template v-slot:activator="{ on }">
-                    <v-card outlined tile width="50%" v-on="on">
-                        <v-btn block tile color="indigo" dark @click="$emit('dec')">Decode</v-btn>
-                    </v-card>
-                </template>
-                <span>디코딩</span>
-            </v-tooltip>
-        </v-row> -->
         <v-row class="mb-6" align="center" justify="center" no-gutters>
             <v-tooltip bottom>
                 <template v-slot:activator="{ on }">
                     <v-card outlined tile width="33%" v-on="on">
-                        <v-btn block tile color="indigo" dark @click="$emit('cp', this.result)">DOWNLOAD</v-btn>
+                        <v-btn block tile color="indigo" dark @click="$emit('download')">DOWNLOAD</v-btn>
                     </v-card>
                 </template>
                 <span>다운로드</span>
@@ -48,7 +30,7 @@
             <v-tooltip bottom>
                 <template v-slot:activator="{ on }">
                     <v-card outlined tile width="33%" v-on="on">
-                        <v-btn block tile color="indigo" dark @click="$emit('cp', this.result)">COPY</v-btn>
+                        <v-btn block tile color="indigo" dark @click="$emit('cp')">COPY</v-btn>
                     </v-card>
                 </template>
                 <span>클립보드에 복사</span>

@@ -1,13 +1,20 @@
 <template>
     <v-container fluid>
         <EncDec 
-            @enc="encode"
-            @dec="decode"
-            @rev="reverse"
             @cp="copySomething"
-            :before="before"
-            :after="after"
+            @download="download"
         />
+        <v-snackbar
+            v-model="snackbar"
+            :timeout="timeout"
+            left
+            :color="color"
+            bottom
+            class="font-weight-bold"
+        >
+            {{ alerts }}
+            <v-btn color="white" text @click="snackbar = false">Close</v-btn>
+        </v-snackbar>
     </v-container>
 </template>
 
@@ -19,41 +26,32 @@ export default {
         EncDec
     },
     data: () => ({
-        before: null,
-        after: null,
+        color: null,
+        alerts: null,
+        snackbar: null,
+        timeout: 5000,
     }),
     methods: {
-        encode(){
-            const plainText = encodeURIComponent(this.model)
-            this.result = plainText
-        },
-        decode(){
-            const encodeText = decodeURIComponent(this.model)
-            this.result = encodeText
-        },
-        reverse(before, after){
-            const _b = before
-            const _a = after
-            this.before = _a
-            this.after = _b
-        },
         async copySomething() {
             try {
-                await this.$copyText(this.result);
+                await this.$copyText(this.$store.getters['encdec/result']);
+                this.alerts = "복사되었습니다."
+                this.color = "success"
+                this.snackbar = true
             } catch (e) {
                 console.error(e);
+                this.alerts = e
+                this.color = "error"
+                this.snackbar = true
             }
         },
         download(){
             var element = document.createElement('a');
-            element.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(text));
-            element.setAttribute('download', filename);
-
+            element.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(this.$store.getters['encdec/result']));
+            element.setAttribute('download', 'smartTools.txt');
             element.style.display = 'none';
             document.body.appendChild(element);
-
             element.click();
-
             document.body.removeChild(element);
         }
     }

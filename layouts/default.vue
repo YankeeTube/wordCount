@@ -4,7 +4,11 @@
       dark
       app
       style="background:#11293f"
+      :mini-variant.sync="miniVariant"
+      permanent
+      :temporary="temporary"
     >
+    <!-- temporary 반응형 처리해얗마 -->
       <template v-slot:prepend>
         <v-list-item two-line>
           <v-list-item-avatar size="40">
@@ -35,7 +39,7 @@
           :href="menu.link"
         >
 
-          <v-list-item-icon ><v-icon size=20>{{ menu.icon }}</v-icon></v-list-item-icon>
+          <v-list-item-icon><v-icon size=20>{{ menu.icon }}</v-icon></v-list-item-icon>
           <v-list-item-title>{{ menu.name }}</v-list-item-title>
         </v-list-item>
         
@@ -64,6 +68,20 @@
           </v-list-item>
         </v-list-group>
       </v-list>
+      
+
+    <v-bottom-navigation
+      v-model="bottomNav"
+      dark
+      absolute
+      color="white"
+      background-color="primary"
+    >
+      <v-btn block icon @click="miniVariant = !miniVariant">
+        <v-icon v-if="miniVariant === true">mdi-arrow-right-thick</v-icon>
+        <v-icon v-if="miniVariant === false">mdi-arrow-left-thick</v-icon>
+      </v-btn>
+      </v-bottom-navigation>
     </v-navigation-drawer>
 
     <AppBar 
@@ -106,9 +124,8 @@ export default {
       clipped: false,
       drawer: false,
       fixed: false,
-      miniVariant: false,
-      right: true,
-      rightDrawer: false,
+      miniVariant: true,
+      temporary: false,
       title: '워드 카운트',
       currentYear: new Date().getFullYear(),
       isMobile: false,
